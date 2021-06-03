@@ -1,0 +1,55 @@
+---
+title: "Regresiónes con la Huella de Carbono en el transporte"
+author: "Carolina Rojas, Bryan Castillo, Marc Quintana, Diego Gálvez, Iván Muñiz "
+date: "3 de junio de 2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+load("output/graphic.RData")
+```
+
+
+## Análisis exploratorio-gráfico de algunas variables
+
+```{r echo=FALSE, message=F, warning=FALSE,error=F, fig.show="hold", out.width="50%"}
+g1 
+g2
+g4 
+g5
+g6
+g7
+g8
+g3
+```
+
+##Corriendo modelos
+
+####Modelo lineal en T0:
+```{r echo=FALSE, message=F,  warning=FALSE, error=F}
+t0_tr
+```
+
+####Modelo lineal en T1:
+```{r echo=FALSE, message=F,  warning=FALSE, error=F}
+t1_tr
+```
+
+####Modelo lineal en T2:
+```{r echo=FALSE, message=F,  warning=FALSE, error=F}
+t2_tr
+```
+
+
+##Viendo el desempeño de los modelos
+```{r echo=FALSE, message=F,  warning=FALSE, error=F}
+knitr::kable(p1, caption = "Desempeño de modelos")
+```
+
+
+```{r echo=FALSE, message=F,  warning=FALSE, error=F}
+p2
+```
+
+
+st1b

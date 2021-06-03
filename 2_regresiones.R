@@ -1,4 +1,5 @@
 library(tidyverse)
+install.packages("stargazer")
 
 #Modelos trabajo ---------------------
 t0_tr<-summary(lm(
@@ -49,34 +50,34 @@ plot(performance::compare_performance(t0_tr, t1_tr,t2_tr))
 # Contaminación Compra de alimentos
 
 
-t0_tr<-summary(lm(
+t0_tr<-lm(
   h40.huellaPreWrk ~  as.factor(P3_1) + 
                       as.factor(`P5[{_3}].Rp`) + 
                       as.factor(`P5[{_6}].Rp`)+ 
                       as.factor(GSE)+
                       as.factor(P5_1)+ 
                       `Densidad del barrio (hab)` + 
-                      `Distancia al centro Network`, data=bd1hogarDummy))
+                      `Distancia al centro Network`, data=bd1hogarDummy) #%>% summary()
 
-t1_tr<-summary(lm(
+t1_tr<-lm(
   h40.huellaPstWrk ~  as.factor(P3_1) + 
                       as.factor(`P5[{_3}].Rp`) + 
                       as.factor(`P5[{_6}].Rp`)+ 
                       as.factor(GSE)+
                       as.factor(P5_1)+ 
                       `Densidad del barrio (hab)` + 
-                      `Distancia al centro Network`, data=bd1hogarDummy))
+                      `Distancia al centro Network`, data=bd1hogarDummy)#%>% summary()
 
 
 
-t2_tr<-summary(lm(huellaDicWrk_v2~
+t2_tr<-lm(huellaDicWrk_v2~
                     as.factor(GSE)+
                     as.factor(P3_1)+
                     as.factor(`P5[{_3}].Rp`)+
                     as.factor(`P5[{_6}].Rp`)+
                     as.factor(P5_1)+
                     `Densidad del barrio (hab)` + 
-                    `Distancia al centro Network`, data=bd2hogarDummy))
+                    `Distancia al centro Network`, data=bd2hogarDummy)#%>% summary()
 
 
 
@@ -209,49 +210,80 @@ transporte<-rbind(t0,t1,t2)
 
 # GSE
 
-ggplot(data=transporte,aes(y=Huella,x=GSE, col=factor(data),group=factor(data)))+
+g1<-ggplot(data=transporte,aes(y=Huella,x=GSE, col=factor(data),group=factor(data)))+
   geom_point(position =  position_dodge(width = .5))+
-  scale_color_viridis_d()
+  scale_color_viridis_d(name="Tiempo")+
+  labs(title = "Huella de Carbono & GSE")+
+  xlab("GSE")
 
-ggplot(data=transporte,aes(y=Huella,x=P3_1, col=factor(data),group=factor(data)))+
+
+g2<-ggplot(data=transporte,aes(y=Huella,x=P3_1, col=factor(data),group=factor(data)))+
   geom_point(position =  position_dodge(width = .5))+
-  scale_color_viridis_d()
+  scale_color_viridis_d(name="Tiempo")+
+  labs(title = "Huella de carbono & Tenencia de auto")+
+  xlab("Tiene auto")
 
-ggplot(data=transporte,aes(y=Huella,x=F0, col=factor(data),group=factor(data)))+
+g3<-ggplot(data=transporte,aes(y=Huella,x=F0, col=factor(data),group=factor(data)))+
   geom_point(position =  position_dodge(width = .5))+
-  scale_color_viridis_d()+ theme(axis.text.x = element_text(angle=90, hjust = 1))
+  scale_color_viridis_d(name="Tiempo")+ theme(axis.text.x = element_text(angle=90, hjust = 1))+
+  labs(title = "Huella de carbono & Ciudad")+
+  xlab("Ciudad")
 
-ggplot(data=transporte,aes(y=Huella,x=P3_1,col=factor(data),group=factor(data)))+
+g4<-ggplot(data=transporte,aes(y=Huella,x=`P5[{_3}].Rp`, col=factor(data),group=factor(data)))+
   geom_point(position =  position_dodge(width = .5))+
-  scale_color_viridis_d()
+  scale_color_viridis_d(name="Tiempo")+
+  labs(title = "Huella de carbono & Camina y anda más en bicicleta")+
+  xlab("Camina y anda más en bicicleta")
 
-ggplot(data=transporte,aes(y=Huella,x=`P5[{_3}].Rp`, col=factor(data),group=factor(data)))+
+g5<-ggplot(data=transporte,aes(y=Huella,x=`P5[{_6}].Rp`, col=factor(data),group=factor(data)))+
   geom_point(position =  position_dodge(width = .5))+
-  scale_color_viridis_d()
+  scale_color_viridis_d(name="Tiempo")+
+  labs(title = "Huella de carbono & Conoce la calidad del aire de su ciudad")+
+  xlab("Conoce la calidad del aire de su ciudad")
 
-ggplot(data=transporte,aes(y=Huella,x=`P5[{_6}].Rp`, col=factor(data),group=factor(data)))+
+
+g6<-ggplot(data=transporte,aes(y=Huella,x=P5_1, col=factor(data),group=factor(data)))+
   geom_point(position =  position_dodge(width = .5))+
-  scale_color_viridis_d()
+  scale_color_viridis_d(name="Tiempo")+
+  labs(title = "Huella de carbono & ha bajado el ingreso promedio del hogar")+
+  xlab("Ha bajado el ingreso promedio del hogar")
 
-ggplot(data=transporte,aes(y=Huella,x=P5_1, col=factor(data),group=factor(data)))+
+
+g7<-ggplot(data=transporte,aes(y=Huella,x=`Densidad del barrio (hab)`, col=factor(data),group=factor(data)))+
   geom_point(position =  position_dodge(width = .5))+
-  scale_color_viridis_d()
+  scale_color_viridis_d(name="Tiempo")+
+  labs(title = "Huella de carbono & Densidad del barrio")+
+  xlab("Densidad del barrio")
 
-ggplot(data=transporte,aes(y=Huella,x=`Densidad del barrio (hab)`, col=factor(data),group=factor(data)))+
+
+g8<-ggplot(data=transporte,aes(y=Huella,x=`Distancia al centro Network`, col=factor(data),group=factor(data)))+
   geom_point(position =  position_dodge(width = .5))+
-  scale_color_viridis_d()
-
-ggplot(data=transporte,aes(y=Huella,x=`Distancia al centro Network`, col=factor(data),group=factor(data)))+
-  geom_point(position =  position_dodge(width = .5))+
-  scale_color_viridis_d()
+  scale_color_viridis_d(name="Tiempo")+
+  labs(title = "Huella de carbono & Distancia (network) al centro")+
+  xlab("Distancia (network) al centro")
 
 
+ggplot(data=transporte, aes(x=Huella, col=factor(data),group=factor(data)))+
+  geom_histogram(position = "dodge")
 
 # Nuevo desempeño ---------------------------------------------------------
 
-performance::compare_performance(t0_tr, t1_tr,t2_tr)
+p1<-performance::compare_performance(t0_tr, t1_tr,t2_tr)
 
-plot(performance::compare_performance(t0_tr, t1_tr,t2_tr))
+p2<-plot(performance::compare_performance(t0_tr, t1_tr,t2_tr))
+
+
+# Divide and coquer (pendiente) -------------------------------------------------------
+
+pivot_wider(transporte, id_cols = colnames(transporte)[1])
+
+# Reducción de variables --------------------------------------------------
+
+p1
+# Guardando figuras y datos -----------------------------------------------
+
+save(g1,g2,g3,g4,g5,g6,g7,g8,t0_tr,t1_tr,t2_tr,p1,p2, st1,st1b,file="output/graphic.RData")
+
 # Appendix ----------------------------------------------------------------
 
 summary(lm(
@@ -276,5 +308,10 @@ test2<-lm(
 as.formula(paste("h40.huellaPreStu~ ",paste(ifelse(grepl(" ",colnames(bd1hogarDummy)[22:97])|grepl("\\{",colnames(bd1hogarDummy)[22:97]),paste0("`",colnames(bd1hogarDummy)[22:97],"`"),colnames(bd1hogarDummy)[22:97]),collapse = "+")))
 
 
+st1<-stargazer::stargazer(t0_tr,t1_tr, t2_tr, type="text")
+st1b<-stargazer::stargazer(t0_tr,t1_tr, t2_tr, type="text")
 
-
+car::vif()
+car::vif(t0_tr)
+car::vif(t1_tr)
+car::vif(t2_tr)
