@@ -57,7 +57,8 @@ t0_tr<-lm(
                       as.factor(GSE)+
                       as.factor(P5_1)+ 
                       `Densidad del barrio (hab)` + 
-                      `Distancia al centro Network`, data=bd1hogarDummy) #%>% summary()
+                      `Distancia al centro Network`+
+                      `P4[{_1}].Rp`, data=bd1hogarDummy[bd1hogarDummy$`P4[{_1}].Rp`!=99,]) %>% summary()
 
 t1_tr<-lm(
   h40.huellaPstWrk ~  as.factor(P3_1) + 
@@ -66,7 +67,8 @@ t1_tr<-lm(
                       as.factor(GSE)+
                       as.factor(P5_1)+ 
                       `Densidad del barrio (hab)` + 
-                      `Distancia al centro Network`, data=bd1hogarDummy)#%>% summary()
+                      `Distancia al centro Network`+
+                      `P4[{_2}].Rp`, data=bd1hogarDummy[bd1hogarDummy$`P4[{_2}].Rp`!=99,]) %>% summary()
 
 
 
@@ -77,7 +79,8 @@ t2_tr<-lm(huellaDicWrk_v2~
                     as.factor(`P5[{_6}].Rp`)+
                     as.factor(P5_1)+
                     `Densidad del barrio (hab)` + 
-                    `Distancia al centro Network`, data=bd2hogarDummy)#%>% summary()
+                    `Distancia al centro Network`+
+                    `P4[{_1}].Rp`, data=bd2hogarDummy[bd2hogarDummy$`P4[{_1}].Rp`!=99,])%>% summary()
 
 
 
@@ -174,7 +177,9 @@ c("h40.huellaPreWrk",
 "P5[{_6}].Rp",
 "P5_1",
 "Densidad del barrio (hab)",
-"Distancia al centro Network")) %>% mutate(., data="T0")
+"Distancia al centro Network",
+"P4[{_1}].Rp"
+)) %>% mutate(., data="T0")
 
 t1<-select(bd1hogarDummy,
 c("h40.huellaPstWrk",
@@ -185,7 +190,8 @@ c("h40.huellaPstWrk",
 "P5[{_6}].Rp",
 "P5_1",
 "Densidad del barrio (hab)",
-"Distancia al centro Network"))%>% mutate(., data="T1")
+"Distancia al centro Network",
+"P4[{_2}].Rp"))%>% mutate(., data="T1")
 
 t2<-select(bd2hogarDummy,
 c("huellaDicWrk_v2",
@@ -196,11 +202,16 @@ c("huellaDicWrk_v2",
 "P5[{_6}].Rp",
 "P5_1",
 "Densidad del barrio (hab)",
-"Distancia al centro Network"))%>% mutate(., data="T2")
+"Distancia al centro Network",
+"P4[{_1}].Rp"))%>% mutate(., data="T2")
 
 colnames(t0)[1]<-"Huella"
 colnames(t1)[1]<-"Huella"
 colnames(t2)[1]<-"Huella"
+
+colnames(t0)[10]<-"tripsFood"
+colnames(t1)[10]<-"tripsFood"
+colnames(t2)[10]<-"tripsFood"
 
 
 transporte<-rbind(t0,t1,t2)
@@ -262,6 +273,12 @@ g8<-ggplot(data=transporte,aes(y=Huella,x=`Distancia al centro Network`, col=fac
   labs(title = "Huella de carbono & Distancia (network) al centro")+
   xlab("Distancia (network) al centro")
 
+g9<-ggplot(data=transporte[transporte$tripsFood!=99,],aes(y=Huella,x=tripsFood, col=factor(data),group=factor(data)))+
+  geom_point(position =  position_dodge(width = .5))+
+  scale_color_viridis_d(name="Tiempo")+
+  labs(title = "Huella de carbono & Viajes a comprar alimentos")+
+  xlab("Viajes a comprar alimentos")
+
 
 ggplot(data=transporte, aes(x=Huella, col=factor(data),group=factor(data)))+
   geom_histogram(position = "dodge")
@@ -282,7 +299,7 @@ pivot_wider(transporte, id_cols = colnames(transporte)[1])
 p1
 # Guardando figuras y datos -----------------------------------------------
 
-save(g1,g2,g3,g4,g5,g6,g7,g8,t0_tr,t1_tr,t2_tr,p1,p2, st1,st1b,file="output/graphic.RData")
+save(g1,g2,g3,g4,g5,g6,g7,g8,g9,t0_tr,t1_tr,t2_tr,p1,p2, st1,st1b,file="output/graphic.RData")
 
 # Appendix ----------------------------------------------------------------
 

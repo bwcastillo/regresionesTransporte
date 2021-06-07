@@ -89,3 +89,29 @@ table(bd2hogarDummy$P5_2_No.y)
 
 
 
+
+# Agregando datos de alimentos --------------------------------------------
+
+encuesta1<-readxl::read_xlsx("C:/CEDEUS/2020/diciembre6_recalculoHuellaCOVID/BD_Cliente_PUC_Huella_de_Carbon_Urbana (2).xlsx",skip = 9)
+encuesta2<-readxl::read_xlsx("C:/CEDEUS/2021/marzo1_huellaCarbono2/input/BD_Cliente_PUC_Huella_de_Carbon_Urbana_ENERO_2021_V2/BD_Cliente_PUC_Huella_de_Carbon_Urbana_ENERO_2021_V2.xlsx",skip=8)
+
+View(encuesta1)
+colnames(encuesta1)
+View(encuesta2)
+colnames(encuesta2)
+
+tripfood1<-encuesta1[,c(2,248:249)]
+tripfood2<-encuesta2[,c(1,232)]
+
+rm(encuesta1)
+rm(encuesta2)
+
+
+
+View(bd1hogarDummy)
+View(bd2hogarDummy)
+
+tripfood1$Respondent_ID...2<-as.character(tripfood1$Respondent_ID...2)
+
+bd1hogarDummy<-left_join(bd1hogarDummy,tripfood1,by=c("id_respondent"="Respondent_ID...2"))
+bd2hogarDummy<-left_join(bd2hogarDummy,tripfood2,by=c("Respondent_ID"="Respondent_ID...1"))
