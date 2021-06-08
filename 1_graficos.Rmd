@@ -53,4 +53,35 @@ p2
 ```
 
 
-st1b
+### Viendo los modelos en cada ciudad y contexto temporal
+```{r echo=FALSE, message=F,  warning=FALSE, error=F}
+tr_spl
+```
+
+
+### Viendo el desempeño de los modelos de cada ciudad y contexto temporal
+```{r echo=FALSE, message=F,  warning=FALSE, error=F}
+p1_spl
+```
+
+#####Diccionario:
+
+* <font size="1">tr_spl[[1]]= "Coronel (Bíobío).T0"</font>
+* <font size="1">tr_spl[[2]]= "Osorno (Los Lagos).T0"</font>
+* <font size="1">tr_spl[[3]]= "Temuco / Padre las Casas (La Araucanía).T0" </font>
+* <font size="1">tr_spl[[4]]= "Valdivia (Los Ríos).T0"</font>
+* <font size="1">tr_spl[[5]]= "Coronel (Bíobío).T1"</font>
+* <font size="1">tr_spl[[6]]= "Osorno (Los Lagos).T1"</font>                
+* <font size="1">tr_spl[[7]]= "Temuco / Padre las Casas (La Araucanía).T1" </font>
+* <font size="1">tr_spl[[8]]= "Valdivia (Los Ríos).T1"</font>
+* <font size="1">tr_spl[[9]]= "Coronel (Bíobío).T2"</font>              
+* <font size="1">tr_spl[[10]]= "Osorno (Los Lagos).T2"</font>
+* <font size="1">tr_spl[[11]]= "Temuco / Padre las Casas (La Araucanía).T2"</font> 
+* <font size="1">tr_spl[[12]]= "Valdivia (Los Ríos).T2"</font>
+
+
+### Viendo el desempeño de los modelos de cada ciudad y contexto temporal
+```{r echo=FALSE, message=F,  warning=FALSE, error=F}
+p2_spl
+```
+

@@ -299,7 +299,84 @@ pivot_wider(transporte, id_cols = colnames(transporte)[1])
 p1
 # Guardando figuras y datos -----------------------------------------------
 
-save(g1,g2,g3,g4,g5,g6,g7,g8,g9,t0_tr,t1_tr,t2_tr,p1,p2, st1,st1b,file="output/graphic.RData")
+  save(g1,g2,g3,g4,g5,g6,g7,g8,g9,t0_tr,t1_tr,t2_tr,p1,p2, st1, st1b, tr_spl, p1_spl, p2_spl,file="output/graphic.RData")
+
+
+# Divide y vencerás -------------------------------------------------------
+
+tr_spl<-split.data.frame(transporte,list(transporte$F0,transporte$data)) %>% 
+  lapply(.,function(x){
+  x<-x
+  lm(Huella~
+     as.factor(GSE)+
+     as.factor(P3_1)+
+     as.factor(`P5[{_3}].Rp`)+
+     as.factor(`P5[{_6}].Rp`)+
+     as.factor(P5_1)+
+     `Densidad del barrio (hab)` + 
+     `Distancia al centro Network`+
+     tripsFood, data=x) %>% summary()})
+
+
+
+lapply(tr_spl,performance::compare_performance)
+
+
+
+p1_spl<-plot(performance::compare_performance(tr_spl[[1]],
+                                              tr_spl[[2]],
+                                              tr_spl[[3]],
+                                              tr_spl[[4]],
+                                              tr_spl[[5]],
+                                              tr_spl[[6]],
+                                              tr_spl[[7]],
+                                              tr_spl[[8]],
+                                              tr_spl[[9]],
+                                              tr_spl[[10]],
+                                              tr_spl[[11]],
+                                              tr_spl[[12]]))
+
+p2_spl<-plot(performance::compare_performance(tr_spl[[1]],
+                                              tr_spl[[2]],
+                                              tr_spl[[3]],
+                                              tr_spl[[4]],
+                                              tr_spl[[5]],
+                                              tr_spl[[6]],
+                                              tr_spl[[7]],
+                                              tr_spl[[8]],
+                                              tr_spl[[9]],
+                                              tr_spl[[10]],
+                                              tr_spl[[11]],
+                                              tr_spl[[12]]))
+
+# p2_spl<-plot(performance::compare_performance(tr_spl[[1]],
+#                                               tr_spl[[5]],
+#                                               tr_spl[[9]],
+#                                               tr_spl[[2]],
+#                                               tr_spl[[6]],
+#                                               tr_spl[[10]],
+#                                               tr_spl[[3]],
+#                                               tr_spl[[7]],
+#                                               tr_spl[[11]],
+#                                               tr_spl[[4]],
+#                                               tr_spl[[8]],
+#                                               tr_spl[[12]])) %>% 
+#   legend (1,95,legend=c("Coronel T0", "Coronel T1","Coronel T2",
+#                         "Osorno T0", "Osorno T1","Osorno T2",
+#                         "Temuco T0", "Temuco T1","Temuco T2",
+#                         "Valdivia T0", "Valdivia T1","Valdivia T2"), lty=1:2, cex=0.8)
+
+
+names(tr_spl)
+# Performance -------------------------------------------------------------
+
+
+p1_spl<-performance::compare_performance(tr_spl[[1]],tr_spl[[2]],tr_spl[[3]],tr_spl[[4]],tr_spl[[5]],tr_spl[[6]],
+                                      tr_spl[[7]],tr_spl[[8]],tr_spl[[9]],tr_spl[[10]],tr_spl[[11]],tr_spl[[12]])
+
+p2_spl<-plot(performance::compare_performance(tr_spl[[1]],tr_spl[[2]],tr_spl[[3]],tr_spl[[4]],tr_spl[[5]],tr_spl[[6]],
+                                      tr_spl[[7]],tr_spl[[8]],tr_spl[[9]],tr_spl[[10]],tr_spl[[11]],tr_spl[[12]]))
+
 
 # Appendix ----------------------------------------------------------------
 
