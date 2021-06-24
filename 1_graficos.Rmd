@@ -8,6 +8,11 @@ output: html_document
 ```{r setup, include=FALSE}
 load("output/graphic.RData")
 ```
+#EXPLICAR MEJOR LAS VARIABLES
+#PONER TELETRABAJO EN T2
+#DROP BOX EXPLICANDO 
+#Logaritmo Neperiano a las de alto vawlor numérico
+#Hacer histogramas
 
 
 ## Análisis exploratorio-gráfico de algunas variables

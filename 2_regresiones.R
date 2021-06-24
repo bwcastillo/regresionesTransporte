@@ -361,7 +361,7 @@ p2_spl<-plot(performance::compare_performance(tr_spl[[1]],
 #                                               tr_spl[[4]],
 #                                               tr_spl[[8]],
 #                                               tr_spl[[12]])) %>% 
-#   legend (1,95,legend=c("Coronel T0", "Coronel T1","Coronel T2",
+#   legen d (1,95,legend=c("Coronel T0", "Coronel T1","Coronel T2",
 #                         "Osorno T0", "Osorno T1","Osorno T2",
 #                         "Temuco T0", "Temuco T1","Temuco T2",
 #                         "Valdivia T0", "Valdivia T1","Valdivia T2"), lty=1:2, cex=0.8)
@@ -409,3 +409,14 @@ car::vif()
 car::vif(t0_tr)
 car::vif(t1_tr)
 car::vif(t2_tr)
+
+summary(lm(
+  h40.huellaPreWrk ~  as.factor(P3_1) + 
+    as.factor(`P5[{_3}].Rp`) + 
+    as.factor(`P5[{_6}].Rp`)+ 
+    as.factor(GSE)+
+    as.factor(P5_1)+ 
+    `Densidad del barrio (hab)` + 
+    `Distancia al centro Network`
+    , data=bd1hogarDummy[bd1hogarDummy$`P4[{_1}].Rp`!=99,]))
+
