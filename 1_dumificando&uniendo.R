@@ -4,6 +4,7 @@ bd1hogarDummy<-readxl::read_xlsx("C:/CEDEUS/2021/marzo1_huellaCarbono2/output/hu
 bd1hogar<-readxl::read_xlsx("C:/CEDEUS/2021/marzo1_huellaCarbono2/output/bd1hogar.xlsx")
 bd2hogar<-readxl::read_xlsx("C:/CEDEUS/2021/marzo1_huellaCarbono2/output/bd2Hogares.xlsx")
 bd2personas<-readxl::read_xlsx("C:/CEDEUS/2021/marzo1_huellaCarbono2/output/bd2personas.xlsx")
+bd1personas<-readxl::read_xlsx("C:/CEDEUS/2021/marzo1_huellaCarbono2/output/bd1personas.xlsx")
 encuesta1<-readxl::read_xlsx("C:/CEDEUS/2020/diciembre6_recalculoHuellaCOVID/BD_Cliente_PUC_Huella_de_Carbon_Urbana (2).xlsx",skip = 9)
 encuesta2<-readxl::read_xlsx("C:/CEDEUS/2021/marzo1_huellaCarbono2/input/BD_Cliente_PUC_Huella_de_Carbon_Urbana_ENERO_2021_V2/BD_Cliente_PUC_Huella_de_Carbon_Urbana_ENERO_2021_V2.xlsx",skip=8)
 #bd2<-readxl::read_xlsx("C:/CEDEUS/2021/marzo1_huellaCarbono2/input/BD_Cliente_PUC_Huella_de_Carbon_Urbana_ENERO_2021_V2/BD_Cliente_PUC_Huella_de_Carbon_Urbana_ENERO_2021_V2.xlsx",skip=8)

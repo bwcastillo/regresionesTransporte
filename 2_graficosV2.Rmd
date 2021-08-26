@@ -1,0 +1,81 @@
+---
+title: "Regresiones V2"
+author: "Bryan Castillo"
+date: "24 de agosto de 2021"
+output: html_document
+---
+
+
+```{r setup, include=FALSE}
+load("output/graphicV2.RData")
+```
+
+
+
+## 1. Análisis exploratorio-gráfico de algunas variables
+
+A continuación pueden ver el análisis exploratorio gráfico de algunas variables con la huella de carbono per-cápita por hogar, las variables independientes en este caso son:
+
+- Grupo Socio Económico (GSE)
+- Tenencia de auto 
+- Anda más en bicicleta
+- Conoce la calidad del aire de su ciudad
+- Ha bajado el ingreso promedio del hogar
+- Densidad del barrio
+- Distancia (network) al cenetro
+- Huella de carbono y ciudad
+- Viaja a comprar alimentos
+
+```{r echo=FALSE, message=F, warning=FALSE,error=F, fig.show="hold", out.width="50%"}
+g1_v2 
+g2_v2
+g4_v2 
+g5_v2
+g6_v2
+g7_v2
+g8_v2
+g3_v2
+g9_v2
+```
+
+## 2. Corriendo modelos lineales
+
+Se corren modelos lineales con 19 variables independientes en cada contexto temporal (T0-T1-T2). El resultado de cada modelo consta de cuatro columnas que resumen los siguientes valores por cada coeficiente o variable independiente: *Coefficients, Estimate, Std. Error, t value, Pr(>|t|)*. El nombre de las variables independientes categóricas puede ser visto, al igual que las numéricas, en la columna *Coefficients* pero esta vez precedido por *as.factor(*, ya que son variables factores o categóricas.
+
+La cantidad de asteríscos '\*' indica el nivel de significancia de cada variable en el modelo, tal como se resume a continuación:
+
+**Si significancia:**  
+
+- 0 = \*\*\*
+- 0.001= \*\* 
+- 0.01= \*
+- 0.05= . 
+- 0.1= ' '  
+
+Por último cada cuadro muestra algunos estadísticos del modelo, tales como:
+
+- Residual standard error
+- Multiple R-squared
+- Adjusted R-squared
+- F-statistic
+- p-value
+
+
+#### Modelo lineal en T0:
+
+```{r echo=FALSE, message=F,  warning=FALSE, error=F}
+t0_trV2
+```
+
+#### Modelo lineal en T1:
+```{r echo=FALSE, message=F,  warning=FALSE, error=F}
+t1_trV2
+```
+
+#### Modelo lineal en T2:
+```{r echo=FALSE, message=F,  warning=FALSE, error=F}
+t2_trV2
+```
+
+
+

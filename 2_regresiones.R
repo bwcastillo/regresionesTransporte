@@ -1,31 +1,121 @@
 library(tidyverse)
 install.packages("stargazer")
 
+
 #Modelos trabajo ---------------------
-t0_tr<-summary(lm(
-  h40.huellaPreWrk ~  as.factor(P3_1) + as.factor(`P5[{_1}].Rp`) + as.factor(`P5[{_2}].Rp`) + as.factor(`P5[{_3}].Rp`) + as.factor(F0)+ as.factor(GSE)+
-    as.factor(`P5[{_4}].Rp`) + as.factor(`P5[{_5}].Rp`) + as.factor(`P5[{_6}].Rp`) + as.factor(P5_1) + as.factor(P5_2)+`Densidad del barrio (hab)` + `Distancia al centro Network`+ as.factor(F0), data=bd1hogarDummy))
+t0_tr<-
+  summary(lm(
+    h40.huellaPreWrk ~  
+    as.factor(P3_1) + 
+    as.factor(`P5[{_1}].Rp`) + 
+    as.factor(`P5[{_2}].Rp`) +
+    as.factor(`P5[{_3}].Rp`) + 
+    as.factor(`P5[{_4}].Rp`) + 
+    as.factor(`P5[{_5}].Rp`) + 
+    as.factor(`P5[{_6}].Rp`) + 
+    as.factor(`F0_Coronel (Bíobío)`)+
+    as.factor(`F0_Osorno (Los Lagos)`)+
+    as.factor(`F0_Temuco / Padre las Casas (La Araucanía)`)+
+    as.factor(`F0_Valdivia (Los Ríos)`)+
+    as.factor(GSE_C1)+
+    as.factor(GSE_C2)+
+    as.factor(GSE_C3)+
+    as.factor(GSE_D)+
+    as.factor(GSE_E)+
+    as.factor(P5_1) + 
+    as.factor(P5_2), +
+    `Densidad del barrio (hab)` + 
+    `Distancia al centro Network`, 
+    data=bd1hogarDummy))
+
 
 t1_tr<-summary(lm(
-  h40.huellaPstWrk ~  as.factor(P3_1) + as.factor(`P5[{_1}].Rp`) + as.factor(`P5[{_2}].Rp`) + as.factor(`P5[{_3}].Rp`) + as.factor(F0)+ as.factor(GSE)+
-    as.factor(`P5[{_4}].Rp`) + as.factor(`P5[{_5}].Rp`) + as.factor(`P5[{_6}].Rp`) + as.factor(P5_1) + as.factor(P5_2)+`Densidad del barrio (hab)` + `Distancia al centro Network`, data=bd1hogarDummy))
+  h40.huellaPstWrk ~  
+    as.factor(P3_1) +
+    as.factor(`P5[{_1}].Rp`) + 
+    as.factor(`P5[{_2}].Rp`) + 
+    as.factor(`P5[{_3}].Rp`) + 
+    as.factor(`P5[{_4}].Rp`) + 
+    as.factor(`P5[{_5}].Rp`) +
+    as.factor(`P5[{_6}].Rp`)+
+    as.factor(P5_1) + 
+    as.factor(P5_2)+
+    as.factor(F0)+
+    as.factor(GSE)+
+    `Densidad del barrio (hab)` + 
+    `Distancia al centro Network`, data=bd1hogarDummy))
 
 
 t2_tr<-summary(lm(huellaDicWrk_v2~
-             as.factor(F0)+as.factor(GSE)+as.factor(P3_1)+as.factor(`P5[{_1}].Rp`)+as.factor(`P5[{_2}].Rp`)+as.factor(`P5[{_3}].Rp`)+as.factor(`P5[{_4}].Rp`)+as.factor(`P5[{_5}].Rp`)+as.factor(`P5[{_6}].Rp`)+as.factor(`P5[{_7}].Rp`)+as.factor(P5_1)+as.factor(P5_1)+as.factor(P5_2)+as.factor(P5_3)+`Densidad del barrio (hab)` + `Distancia al centro Network`, data=bd2hogarDummy))
+             as.factor(F0)+
+               as.factor(GSE)+
+               as.factor(P3_1)+
+               as.factor(`P5[{_1}].Rp`)+
+               as.factor(`P5[{_2}].Rp`)+
+               as.factor(`P5[{_3}].Rp`)+
+               as.factor(`P5[{_4}].Rp`)+
+               as.factor(`P5[{_5}].Rp`)+
+               as.factor(`P5[{_6}].Rp`)+
+               as.factor(`P5[{_7}].Rp`)+
+               as.factor(P5_1)+
+               as.factor(P5_2)+
+               as.factor(P5_3)+
+               `Densidad del barrio (hab)` + 
+               `Distancia al centro Network`, data=bd2hogarDummy))
 
 #Modelos estudio ---------------------
 
 t0_es<-summary(lm(
-  h40.huellaPreStu ~  as.factor(P3_1) + as.factor(`P5[{_1}].Rp`) + as.factor(`P5[{_2}].Rp`) + as.factor(`P5[{_3}].Rp`) + as.factor(F0)+ as.factor(GSE)+
-    as.factor(`P5[{_4}].Rp`) + as.factor(`P5[{_5}].Rp`) + as.factor(`P5[{_6}].Rp`) + as.factor(P5_1) + as.factor(P5_2)+`Densidad del barrio (hab)` + `Distancia al centro Network`, data=bd1hogarDummy))
+  h40.huellaPreStu ~  
+    as.factor(P3_1) + 
+    as.factor(`P5[{_1}].Rp`) + 
+    as.factor(`P5[{_2}].Rp`) + 
+    as.factor(`P5[{_3}].Rp`) +
+    as.factor(`P5[{_4}].Rp`) +
+    as.factor(`P5[{_5}].Rp`) + 
+    as.factor(`P5[{_6}].Rp`) + 
+    as.factor(P5_1) + 
+    as.factor(P5_2)+
+    as.factor(F0)+ 
+    as.factor(GSE)+
+    `Densidad del barrio (hab)` + 
+    `Distancia al centro Network`,
+  data=bd1hogarDummy))
 
 t1_es<-summary(lm(
-  h40.huellaPstStu ~  as.factor(P3_1) + as.factor(`P5[{_1}].Rp`) + as.factor(`P5[{_2}].Rp`) + as.factor(`P5[{_3}].Rp`) + as.factor(F0)+ as.factor(GSE)+
-    as.factor(`P5[{_4}].Rp`) + as.factor(`P5[{_5}].Rp`) + as.factor(`P5[{_6}].Rp`) + as.factor(P5_1) + as.factor(P5_2)+`Densidad del barrio (hab)` + `Distancia al centro Network`, data=bd1hogarDummy))
+  h40.huellaPstStu ~  
+    as.factor(P3_1) + 
+    as.factor(`P5[{_1}].Rp`) + 
+    as.factor(`P5[{_2}].Rp`) + 
+    as.factor(`P5[{_3}].Rp`) + 
+    as.factor(`P5[{_4}].Rp`) + 
+    as.factor(`P5[{_5}].Rp`) + 
+    as.factor(`P5[{_6}].Rp`) + 
+    as.factor(P5_1) + 
+    as.factor(P5_2)+
+    `Densidad del barrio (hab)` +
+    `Distancia al centro Network`+
+    as.factor(F0)+ 
+    as.factor(GSE)+, 
+  data=bd1hogarDummy))
 
 t2_es<-summary(lm(huellaDicStu_v2~
-   as.factor(F0)+as.factor(GSE)+as.factor(P3_1)+as.factor(`P5[{_1}].Rp`)+as.factor(`P5[{_2}].Rp`)+as.factor(`P5[{_3}].Rp`)+as.factor(`P5[{_4}].Rp`)+as.factor(`P5[{_5}].Rp`)+as.factor(`P5[{_6}].Rp`)+as.factor(`P5[{_7}].Rp`)+as.factor(P5_1)+as.factor(P5_1)+as.factor(P5_2)+as.factor(P5_3)+`Densidad del barrio (hab)` + `Distancia al centro Network`, data=bd2hogarDummy))
+   as.factor(F0)+
+     as.factor(GSE)+
+     as.factor(P3_1)+
+     as.factor(`P5[{_1}].Rp`)+
+     as.factor(`P5[{_2}].Rp`)+
+     as.factor(`P5[{_3}].Rp`)+
+     as.factor(`P5[{_4}].Rp`)+
+     as.factor(`P5[{_5}].Rp`)+
+     as.factor(`P5[{_6}].Rp`)+
+     as.factor(`P5[{_7}].Rp`)+
+     as.factor(P5_1)+
+     as.factor(P5_2)+
+     as.factor(P5_3)+
+     `Densidad del barrio (hab)` + 
+     `Distancia al centro Network`, 
+      data=bd2hogarDummy))
 
 
 
@@ -419,4 +509,6 @@ summary(lm(
     `Densidad del barrio (hab)` + 
     `Distancia al centro Network`
     , data=bd1hogarDummy[bd1hogarDummy$`P4[{_1}].Rp`!=99,]))
+
+
 
